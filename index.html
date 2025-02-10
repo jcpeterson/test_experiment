@@ -12,12 +12,36 @@
   <script>
     const jsPsych = initJsPsych();
 
-    const just_one_trial = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: 'This text is all this demo experiment shows.<img src="img/test.jpg"/>',
-    };
+    // const just_one_trial = {
+    //   type: jsPsychHtmlKeyboardResponse,
+    //   stimulus: 'This text is all this demo experiment shows.<img src="img/test.jpg"/>',
+    // };
 
-    jsPsych.run([just_one_trial]);
+    var trials = {
+        timeline: [
+            {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: '+',
+                choices: "NO_KEYS",
+                trial_duration: 500
+            },
+            {
+                type: jsPsychImageKeyboardResponse,
+                stimulus: jsPsych.timelineVariable('face'),
+                choices: "NO_KEYS",
+                trial_duration: 2500
+            }
+        ],
+        timeline_variables: [
+            { face: 'person-1.jpg' },
+            { face: 'person-2.jpg' },
+            { face: 'person-3.jpg' },
+            { face: 'person-4.jpg' }
+        ]
+    }
+
+    // jsPsych.run([just_one_trial]);
+    jsPsych.run(trials);
   </script>
   
 </html>
